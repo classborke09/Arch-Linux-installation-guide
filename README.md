@@ -1,6 +1,6 @@
 # Arch-Linux-installation-guide
 
-##Btrfs
+**#Btrfs**
 
 #Mount
 
