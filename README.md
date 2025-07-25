@@ -112,6 +112,11 @@ echo "LANG=en_US.UTF-8" >> /etc/locale.conf
 echo "_yourhostname_" >> /etc/hostname
 ```
 
+# Create username
+useradd -m _yourname_
+usermod -aG wheel _yourname_
+edit **visudo**
+
 # Setup bootloader with luks
 Choose your bootloader, this guide I'll use systemd-boot and uki
 ```
