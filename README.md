@@ -93,7 +93,7 @@ systemctl enable NetworkManager systemd-boot-update systemd-resolved apparmor uf
 
 # Setup system time
 ```
-ln -sf /usr/share/zoneinfo/Region/location /etc/localtime
+ln -sf /usr/share/zoneinfo/Region/locatime /etc/localtime
 ```
 ```
 hwclock --systohc
