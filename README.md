@@ -142,7 +142,7 @@ fallback_options="-S autodetect"
 blkid -o value -s UUID /dev/_encrypt_parition_ (eg, /dev/nvme0n1p2) >> /etc/cmdline.d/security.conf
 blkid -o value -s UUID /dev/_dencrypt_parition_ (eg, /dev/mapper/_cryptroot_) >> /etc/cmdline.d/security.conf
 ```
-**Edit your /etc/cmdline.d/security.conf**
+**Edit your /etc/cmdline.d/root.conf**
 ```
 rd.luks.name=_device-UUID_=root root=UUID=_cryptroot_
 ```
