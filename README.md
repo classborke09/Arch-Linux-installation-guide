@@ -113,8 +113,15 @@ echo "_yourhostname_" >> /etc/hostname
 ```
 
 # Create username
+```
 useradd -m _yourname_
+```
+```
+passwd _yourname_
+```
+```
 usermod -aG wheel _yourname_
+```
 edit **visudo**
 
 # Setup bootloader with luks
