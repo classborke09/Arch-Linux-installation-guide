@@ -1,6 +1,6 @@
 ## Arch-Linux-installation-guide
 
-# Connect to interenet**
+# Connect to interenet
 Nothing will be done in this guide without an internet! If you have it already then skip this step.
 
 **iwd**
