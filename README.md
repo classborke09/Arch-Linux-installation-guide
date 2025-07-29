@@ -73,7 +73,7 @@ mount --mkdir -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@var_
 mount --mkdir -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@var_tmp /dev/home_partition /mnt/var/tmp
 
 ```
-**Remember to mount boot dir before install packages in /mnt** 
+> **Remember to mount boot dir before install packages in /mnt** 
 
 **pacstrap**
 ```
