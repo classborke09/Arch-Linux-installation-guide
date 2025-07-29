@@ -54,8 +54,7 @@ cd
 
 umount /mnt
 
-mount -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@
-/dev/root_partition /mnt
+mount -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@ /dev/root_partition /mnt
 
 mount --mkdir -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@home /dev/home_partition /mnt/home
 
