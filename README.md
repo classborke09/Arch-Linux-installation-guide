@@ -52,7 +52,7 @@ mount -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@home
 
 **pacstrap**
 ```
-pacstrap -K /mnt linux linux-firmware base base-devel nvidia apparmor ufw vim zram-generator networkmanager efibootmgr sbctl htop fuse2 git make amd-ucode btrfs-progs cronie exfat-utils efitools
+pacstrap -K /mnt linux linux-firmware base base-devel nvidia apparmor ufw vim zram-generator networkmanager efibootmgr sbctl htop fuse2 git make amd-ucode btrfs-progs cronie exfat-utils efitools dosfstools
 ```
 > If you have fingerprint reader then install:
 ```
