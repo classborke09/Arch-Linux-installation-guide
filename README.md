@@ -54,7 +54,7 @@ mount -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@home
 ```
 pacstrap -K /mnt linux linux-firmware base base-devel nvidia apparmor ufw vim zram-generator networkmanager efibootmgr sbctl htop fuse2 git make amd-ucode btrfs-progs cronie exfat-utils efitools
 ```
-> If you have fingetprint reader the install:
+> If you have fingetprint reader then install:
 ```
 fprint
 ```
