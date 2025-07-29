@@ -66,7 +66,7 @@ mount --mkdir -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@var_
 
 mount --mkdir -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@var_lib_gdm /dev/home_partition /mnt/var/lib/gdm
 
-mount --mkdir -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@var_lib_libvirt /dev/home_partition /mnt/lib/libvirt
+mount --mkdir -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@var_lib_libvirt /dev/home_partition /mnt/var/lib/libvirt
 
 mount --mkdir -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@var_log /dev/home_partition /mnt/var/log
 
