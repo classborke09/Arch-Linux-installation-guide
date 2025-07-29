@@ -163,7 +163,7 @@ blkid -o value -s UUID /dev/_dencrypt_parition_ (eg, /dev/mapper/_cryptroot_) >>
 ```
 **Edit your /etc/cmdline.d/root.conf**
 ```
-rd.luks.name=_device-UUID_=root root=UUID=_cryptroot_
+rd.luks.name=_device-UUID_=root root=UUID=_cryptroot_ rw rootfstype=btrfs rootflags=subvol=@
 ```
 > Note: _device-UUID_ is a encrypt partition and _cryptroot_ is a decrypt one
 **Edit mkinitcpio.conf**
