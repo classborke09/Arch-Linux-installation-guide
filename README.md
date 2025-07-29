@@ -73,9 +73,10 @@ mount --mkdir -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@var_
 mount --mkdir -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@var_tmp /dev/home_partition /mnt/var/tmp
 
 ```
+
 > **Remember to mount boot dir before install packages in /mnt** 
 
-**pacstrap**
+# Pacstrap
 ```
 pacstrap -K /mnt linux linux-firmware base base-devel nvidia apparmor ufw vim zram-generator networkmanager efibootmgr sbctl htop fuse2 git make amd-ucode btrfs-progs cronie exfat-utils efitools dosfstools
 ```
