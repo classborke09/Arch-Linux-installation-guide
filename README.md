@@ -71,7 +71,7 @@ arch-chroot /mnt
 
 # Package that could be install later
 ```
-pacman -S power-profiles-daemon man less grub fwupd yazi reflector lutris steam code sshfs qemu virt-manager virt-viewer dnsmasq vde2 bridge-utils ebtables iptables libvirt swtpmnoto-fonts-cjk bluez-utils
+pacman -S power-profiles-daemon man less grub fwupd yazi reflector lutris steam code sshfs qemu virt-manager virt-viewer dnsmasq vde2 bridge-utils ebtables iptables libvirt swtpm noto-fonts-cjk bluez-utils
 ```
 **Android packages**
 ```
