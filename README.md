@@ -79,7 +79,7 @@ pacman -S android-tools android-udev scrcpy
 ```
 **Gnome packages**
 ```
-pacman -S gnome-firmware papers showtime resources
+pacman -S gnome-firmware papers showtime resources ptyxis
 ```
 **Kde plasma**
 ```
@@ -94,6 +94,9 @@ pacman -S Commit Mono or Geist Mono
 ```
 systemctl enable NetworkManager systemd-boot-update systemd-resolved apparmor ufw cronie bluetooth
 ```
+
+# Edit pacman file
+Add _color_, _ILoveCandy_, _multilib_
 
 # Setup system time
 ```
