@@ -157,6 +157,15 @@ usermod -aG wheel _yourname_
 ```
 edit **visudo**
 
+# Create zram
+edit **/etc/systemd/zram-generator.conf**
+
+```
+[zram0]
+zram-size = min(ram / 2, 4096)
+compression-algorithm = zstd
+```
+
 # Setup bootloader with luks
 Choose your bootloader, this guide I'll use systemd-boot and uki
 ```
