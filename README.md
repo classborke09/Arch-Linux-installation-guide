@@ -48,7 +48,7 @@ mkdir /mnt/home
 mount -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@home
 /dev/home_partition /mnt/home
 ```
-• Remember to mount boot dir before install packages in /root 
+** Remember to mount boot dir before install packages in /mnt ** 
 
 **pacstrap**
 ```
@@ -68,6 +68,9 @@ genfstab -U /mnt >> /mnt/etc/fstab
 ```
 arch-chroot /mnt
 ```
+
+# Edit pacman file
+Add _color_, _ILoveCandy_, _multilib_
 
 # Package that could be install later
 ```
@@ -94,9 +97,6 @@ pacman -S Commit Mono or Geist Mono
 ```
 systemctl enable NetworkManager systemd-boot-update systemd-resolved apparmor ufw cronie bluetooth
 ```
-
-# Edit pacman file
-Add _color_, _ILoveCandy_, _multilib_
 
 # Setup system time
 ```
