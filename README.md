@@ -2,12 +2,14 @@
 
 For this guide i'll use _nvme_ as a hard drive 
 And this partition pattern:
+```
 nvme0n1
 ..nvme0n1p1                        /boot
 ..nvme0n1p2
 ...._nameofyourluksdrive_          /
                                    /...
                                    /...
+```
 
 # Connect to interenet
 > Nothing will be done in this guide without an internet! If you have it already then skip this step.
