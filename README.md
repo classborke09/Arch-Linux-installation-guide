@@ -1,15 +1,14 @@
 ## Arch-Linux-installation-guide
 
-For this guide i'll use _nvme_ as a hard drive 
-And this partition pattern:
-```
+For this guide i'll use _nvme_ as a hard drive and this partition pattern:
+``
 NAME                    MAJ:MIN RM   SIZE RO TYPE  MOUNTPOINTS
 /dev/nvme0n1            259:0    0 476.9G  0 disk  
 ├─/dev/nvme0n1p1        259:1    0     1G  0 part  /boot
 └─/dev/nvme0n1p2        259:2    0 475.9G  0 part  
   └─/dev/mapper/luksdev 253:0    0 475.9G  0 crypt /
                                                    /.....
-```
+``
 
 # Connect to interenet
 > Nothing will be done in this guide without an internet! If you have already then skip this step.
