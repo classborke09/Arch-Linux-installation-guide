@@ -60,7 +60,7 @@ mkfs.btrfs /dev/mapper/luksdev
 ```
 
 **Btrfs**
-if you using btrfs 
+ 
 ```
 mount /dev/luksdev /mnt
 ```
@@ -273,7 +273,7 @@ mkinitcpio -P
 ```
 
 # Ready to reboot step!
-> So at this time your are done and prepare to reboot to your harddrive
+> So at this time your are done and prepare to reboot to your hard drive
 
 **Exit your chroot**
 ```
