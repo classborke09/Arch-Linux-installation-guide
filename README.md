@@ -257,6 +257,7 @@ mkinitcpio -P
 
 # Ready to reboot step!
 > So at this time your are done and prepare to reboot to your harddrive
+
 **Exit your chroot**
 ```
 exit
