@@ -29,60 +29,85 @@ fdisk /dev/_disk_nameyouwanttoparti
 if you using btrfs 
 ```
 mount /dev/root_parti /mnt
-
+```
+```
 cd /mnt
-
+```
+```
 btrfs subvolume create @
-
+```
+```
 btrfs subvolume create @home
-
+```
+```
 btrfs subvolume create @opt
-
+```
+```
 btrfs subvolume create @var_cache
-
+```
+```
 btrfs subvolume create @var_lib_gdm
-
+```
+```
 btrfs subvolume create @var_lib_libvirt
-
+```
+```
 btrfs subvolume create @var_log
-
+```
+```
 btrfs subvolume create @var_spool
-
+```
+```
 btrfs subvolume create @var_tmp
-
+```
+```
 cd
-
+```
+```
 umount /mnt
-
+```
+```
 mount -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@ /dev/root_partition /mnt
-
+```
+```
 mount --mkdir -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@home /dev/home_partition /mnt/home
-
+```
+```
 mount --mkdir -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@opt /dev/home_partition /mnt/opt
-
+```
+```
 mount --mkdir -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@var_cache /dev/home_partition /mnt/var/cache
-
+```
+```
 mount --mkdir -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@var_lib_gdm /dev/home_partition /mnt/var/lib/gdm
-
+```
+```
 mount --mkdir -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@var_lib_libvirt /dev/home_partition /mnt/var/lib/libvirt
-
+```
+```
 mount --mkdir -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@var_log /dev/home_partition /mnt/var/log
-
+```
+```
 mount --mkdir -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@var_spool /dev/home_partition /mnt/var/spool
-
+```
+```
 mount --mkdir -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@var_tmp /dev/home_partition /mnt/var/tmp
-
 ```
 
 > **Remember to mount boot dir before install packages in /mnt** 
 
 # Pacstrap
 ```
-pacstrap -K /mnt linux linux-firmware base base-devel nvidia apparmor ufw vim zram-generator networkmanager efibootmgr sbctl htop fuse2 git make amd-ucode btrfs-progs cronie exfat-utils efitools dosfstools
+pacstrap -K /mnt linux linux-firmware base base-devel apparmor ufw vim zram-generator networkmanager efibootmgr sbctl htop fuse2 git make amd-ucode btrfs-progs cronie exfat-utils efitools dosfstools smartmontools
 ```
-> If you have fingerprint reader then install:
+> If you have:
+**Fingerprint Reader**
 ```
 fprint
+```
+**Nvidia GPU (depend on your linux kernel version)**
+```
+nvidia 
 ```
 
 # After pacstrap
