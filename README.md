@@ -3,12 +3,12 @@
 For this guide i'll use _nvme_ as a hard drive 
 And this partition pattern:
 ```
-nvme0n1
-..nvme0n1p1                        /boot
-..nvme0n1p2
-...._nameofyourluksdrive_          /
-                                   /...
-                                   /...
+NAME                    MAJ:MIN RM   SIZE RO TYPE  MOUNTPOINTS
+/dev/nvme0n1            259:0    0 476.9G  0 disk  
+├─/dev/nvme0n1p1        259:1    0     1G  0 part  /boot
+└─/dev/nvme0n1p2        259:2    0 475.9G  0 part  
+  └─/dev/mapper/luksdev 253:0    0 475.9G  0 crypt /
+                                                   /.....
 ```
 
 # Connect to interenet
@@ -17,18 +17,23 @@ nvme0n1
 **iwd**
 ```
 iwctl
-
-[iwd]# device list
-
-[iwd]# station name scan
-
-[iwd]# station name get-networks
-
-[iwd]# station name connect SSID
-
-[iwd]# exit
 ```
-check if you connect to network by _ping -c 3 archlinux.org_
+```
+iwctl device list
+```
+```
+iwctl station name scan
+```
+```
+iwctl station name get-networks
+```
+```
+iwctl station name connect SSID
+```
+```
+iwctl exit
+```
+check if you have an internet by _ping -c 3 archlinux.org_
 
 # Partition and install base packages 
 ```
@@ -42,13 +47,22 @@ cryptsetup -v luksFormat /dev/nvme0n1p2
 ```
 > follow the prompt and your password!
 ```
-cryptsetup luksOpen /dev/nvme0n1p2 nameofyourluksdrive
+cryptsetup luksOpen /dev/nvme0n1p2 luksdev
+```
+
+# Create filesystem for partitions
+For nvme0n1p1
+```
+mkfs.fat -F32 /dev/nvme0n1p1
+```
+```
+mkfs.btrfs /dev/mapper/luksdev
 ```
 
 **Btrfs**
 if you using btrfs 
 ```
-mount /dev/root_parti /mnt
+mount /dev/luksdev /mnt
 ```
 ```
 cd /mnt
@@ -87,38 +101,38 @@ cd
 umount /mnt
 ```
 ```
-mount -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@ /dev/root_partition /mnt
+mount -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@ /dev/luksdev /mnt
 ```
 ```
-mount --mkdir -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@home /dev/home_partition /mnt/home
+mount --mkdir -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@home /dev/luksdev /mnt/home
 ```
 ```
-mount --mkdir -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@opt /dev/home_partition /mnt/opt
+mount --mkdir -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@opt /dev/luksdev /mnt/opt
 ```
 ```
-mount --mkdir -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@var_cache /dev/home_partition /mnt/var/cache
+mount --mkdir -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@var_cache /dev/luksdev /mnt/var/cache
 ```
 ```
-mount --mkdir -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@var_lib_gdm /dev/home_partition /mnt/var/lib/gdm
+mount --mkdir -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@var_lib_gdm /dev/luksdev /mnt/var/lib/gdm
 ```
 ```
-mount --mkdir -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@var_lib_libvirt /dev/home_partition /mnt/var/lib/libvirt
+mount --mkdir -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@var_lib_libvirt /dev/luksdev /mnt/var/lib/libvirt
 ```
 ```
-mount --mkdir -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@var_log /dev/home_partition /mnt/var/log
+mount --mkdir -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@var_log /dev/luksdev /mnt/var/log
 ```
 ```
-mount --mkdir -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@var_spool /dev/home_partition /mnt/var/spool
+mount --mkdir -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@var_spool /dev/luksdev /mnt/var/spool
 ```
 ```
-mount --mkdir -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@var_tmp /dev/home_partition /mnt/var/tmp
+mount --mkdir -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@var_tmp /dev/luksdev /mnt/var/tmp
 ```
 
 > **Remember to mount boot dir before install packages in /mnt** 
 
 # Pacstrap
 ```
-pacstrap -K /mnt linux linux-firmware base base-devel apparmor ufw vim zram-generator networkmanager efibootmgr sbctl htop fuse2 git make amd-ucode btrfs-progs cronie exfat-utils efitools dosfstools smartmontools
+pacstrap -K /mnt linux linux-firmware base base-devel apparmor ufw vim zram-generator networkmanager efibootmgr sbctl htop fuse2 git make btrfs-progs cronie exfat-utils efitools dosfstools smartmontools
 ```
 > If you have:
 **Fingerprint Reader**
@@ -239,15 +253,18 @@ fallback_options="-S autodetect"
 ```
 ```
 blkid -o value -s UUID /dev/_encrypt_parition_ (eg, /dev/nvme0n1p2) >> /etc/cmdline.d/security.conf
-blkid -o value -s UUID /dev/_dencrypt_parition_ (eg, /dev/mapper/_cryptroot_) >> /etc/cmdline.d/security.conf
+```
+```
+blkid -o value -s UUID /dev/_dencrypt_parition_ (eg, /dev/mapper/luksdev) >> /etc/cmdline.d/security.conf
 ```
 **_Edit_ your /etc/cmdline.d/root.conf**
 ```
-rd.luks.name=_device-UUID_=root root=UUID=_cryptroot_ rw rootfstype=btrfs rootflags=subvol=@
+rd.luks.name=_device-UUID_=luksdev root=UUID=luksdev_ rw rootfstype=btrfs rootflags=subvol=@
 ```
-> Note: _device-UUID_ is a encrypt partition and _cryptroot_ is a decrypt one
+> Note: _device-UUID_ is a encrypt partition and _luksdev_ is a decrypt one
+
 **_Edit_ mkinitcpio.conf**
-modify **HOOKS**
+Modify **HOOKS**
 ```
 HOOKS=(base **systemd** autodetect microcode modconf kms keyboard **sd-vconsole** block **sd-encrypt** filesystems fsck)
 ```
