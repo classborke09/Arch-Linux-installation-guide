@@ -12,7 +12,7 @@ NAME                    MAJ:MIN RM   SIZE RO TYPE  MOUNTPOINTS
 ```
 
 # Connect to interenet
-> Nothing will be done in this guide without an internet! If you have it already then skip this step.
+> Nothing will be done in this guide without an internet! If you have already then skip this step.
 
 **iwd**
 ```
@@ -59,8 +59,13 @@ mkfs.fat -F32 /dev/nvme0n1p1
 mkfs.btrfs /dev/mapper/luksdev
 ```
 
-**Btrfs**
- 
+# Mount your partitions
+**Boot partition**
+```
+mount --mkdir /dev/nvme0n1p1 /mnt/boot
+```
+
+**Root partition**
 ```
 mount /dev/luksdev /mnt
 ```
@@ -127,8 +132,6 @@ mount --mkdir -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@var_
 ```
 mount --mkdir -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@var_tmp /dev/luksdev /mnt/var/tmp
 ```
-
-> **Remember to mount boot dir before install packages in /mnt** 
 
 # Pacstrap
 ```
