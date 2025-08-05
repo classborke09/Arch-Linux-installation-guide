@@ -60,10 +60,6 @@ mkfs.btrfs /dev/mapper/luksdev
 ```
 
 # Mount your partitions
-**Boot partition**
-```
-mount --mkdir /dev/nvme0n1p1 /mnt/boot
-```
 
 **Root partition**
 ```
@@ -131,6 +127,11 @@ mount --mkdir -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@var_
 ```
 ```
 mount --mkdir -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@var_tmp /dev/mapperluksdev /mnt/var/tmp
+```
+
+**Boot partition**
+```
+mount --mkdir /dev/nvme0n1p1 /mnt/boot
 ```
 
 # Pacstrap
