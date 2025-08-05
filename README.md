@@ -106,31 +106,31 @@ cd
 umount /mnt
 ```
 ```
-mount -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@ /dev/luksdev /mnt
+mount -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@ /dev/mapper/luksdev /mnt
 ```
 ```
-mount --mkdir -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@home /dev/luksdev /mnt/home
+mount --mkdir -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@home /dev/mapper/luksdev /mnt/home
 ```
 ```
-mount --mkdir -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@opt /dev/luksdev /mnt/opt
+mount --mkdir -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@opt /dev/mapper/luksdev /mnt/opt
 ```
 ```
-mount --mkdir -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@var_cache /dev/luksdev /mnt/var/cache
+mount --mkdir -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@var_cache /dev/mapper/luksdev /mnt/var/cache
 ```
 ```
-mount --mkdir -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@var_lib_gdm /dev/luksdev /mnt/var/lib/gdm
+mount --mkdir -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@var_lib_gdm /dev/mapper/luksdev /mnt/var/lib/gdm
 ```
 ```
-mount --mkdir -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@var_lib_libvirt /dev/luksdev /mnt/var/lib/libvirt
+mount --mkdir -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@var_lib_libvirt /dev/mapper/luksdev /mnt/var/lib/libvirt
 ```
 ```
 mount --mkdir -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@var_log /dev/luksdev /mnt/var/log
 ```
 ```
-mount --mkdir -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@var_spool /dev/luksdev /mnt/var/spool
+mount --mkdir -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@var_spool /dev/mapper/luksdev /mnt/var/spool
 ```
 ```
-mount --mkdir -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@var_tmp /dev/luksdev /mnt/var/tmp
+mount --mkdir -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@var_tmp /dev/mapperluksdev /mnt/var/tmp
 ```
 
 # Pacstrap
