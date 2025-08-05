@@ -174,7 +174,7 @@ pacman -S gnome gnome-firmware papers showtime resources ptyxis
 ```
 **Kde packages**
 ```
-pacman -S plasma kate ark kalk okular gwenview haruna konsole kclock paritionmanager kdeconnect
+pacman -S plasma kate ark kalk okular gwenview haruna konsole kclock partitionmanager kdeconnect
 ```
 **Miscs that you might don't need!**
 ```
