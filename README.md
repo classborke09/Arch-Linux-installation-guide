@@ -67,7 +67,7 @@ mount --mkdir /dev/nvme0n1p1 /mnt/boot
 
 **Root partition**
 ```
-mount /dev/luksdev /mnt
+mount /dev/mapper/luksdev /mnt
 ```
 ```
 cd /mnt
