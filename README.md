@@ -120,7 +120,7 @@ mount --mkdir -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@var_
 mount --mkdir -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@var_lib_libvirt /dev/mapper/luksdev /mnt/var/lib/libvirt
 ```
 ```
-mount --mkdir -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@var_log /dev/luksdev /mnt/var/log
+mount --mkdir -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@var_log /dev/mapper/luksdev /mnt/var/log
 ```
 ```
 mount --mkdir -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@var_spool /dev/mapper/luksdev /mnt/var/spool
