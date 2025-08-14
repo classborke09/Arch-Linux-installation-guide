@@ -220,6 +220,20 @@ usermod -aG wheel _yourname_
 ```
 edit **visudo**
 
+# Add paru
+```
+su _username_ 
+```
+```
+git clone https://aur.archlinux.org/paru-bin.git
+```
+```
+cd paru-bin
+```
+```
+makepkg -si
+```
+
 # Create zram
 _Edit_ **/etc/systemd/zram-generator.conf**
 
