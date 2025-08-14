@@ -270,10 +270,10 @@ fallback_uki="esp/EFI/Linux/arch-linux-fallback.efi"
 fallback_options="-S autodetect"
 ```
 ```
-blkid -o value -s UUID /dev/_encrypt_parition_ (eg, /dev/nvme0n1p2) >> /etc/cmdline.d/security.conf
+blkid -o value -s UUID /dev/_encrypt_parition_ (eg, /dev/nvme0n1p2) >> /etc/cmdline.d/root.conf
 ```
 ```
-blkid -o value -s UUID /dev/_dencrypt_parition_ (eg, /dev/mapper/luksdev) >> /etc/cmdline.d/security.conf
+blkid -o value -s UUID /dev/_dencrypt_parition_ (eg, /dev/mapper/luksdev) >> /etc/cmdline.d/root.conf
 ```
 **_Edit_ your /etc/cmdline.d/root.conf**
 ```
