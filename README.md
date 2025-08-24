@@ -75,27 +75,6 @@ btrfs subvolume create @
 btrfs subvolume create @home
 ```
 ```
-btrfs subvolume create @opt
-```
-```
-btrfs subvolume create @var_cache
-```
-```
-btrfs subvolume create @var_lib_gdm
-```
-```
-btrfs subvolume create @var_lib_libvirt
-```
-```
-btrfs subvolume create @var_log
-```
-```
-btrfs subvolume create @var_spool
-```
-```
-btrfs subvolume create @var_tmp
-```
-```
 cd
 ```
 ```
@@ -106,27 +85,6 @@ mount -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@ /dev/mapper
 ```
 ```
 mount --mkdir -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@home /dev/mapper/luksdev /mnt/home
-```
-```
-mount --mkdir -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@opt /dev/mapper/luksdev /mnt/opt
-```
-```
-mount --mkdir -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@var_cache /dev/mapper/luksdev /mnt/var/cache
-```
-```
-mount --mkdir -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@var_lib_gdm /dev/mapper/luksdev /mnt/var/lib/gdm
-```
-```
-mount --mkdir -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@var_lib_libvirt /dev/mapper/luksdev /mnt/var/lib/libvirt
-```
-```
-mount --mkdir -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@var_log /dev/mapper/luksdev /mnt/var/log
-```
-```
-mount --mkdir -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@var_spool /dev/mapper/luksdev /mnt/var/spool
-```
-```
-mount --mkdir -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@var_tmp /dev/mapperluksdev /mnt/var/tmp
 ```
 
 **Boot partition**
