@@ -94,7 +94,7 @@ mount --mkdir /dev/nvme0n1p1 /mnt/boot
 
 # Pacstrap
 ```
-pacstrap -K /mnt linux linux-firmware base base-devel apparmor ufw vim zram-generator networkmanager efibootmgr sbctl htop fuse2 git make btrfs-progs cronie exfat-utils efitools dosfstools smartmontools
+pacstrap -K /mnt linux linux-firmware base base-devel apparmor ufw vim networkmanager efibootmgr sbctl htop fuse2 git make btrfs-progs cronie exfat-utils efitools dosfstools smartmontools snapper grub grub-btrfs
 ```
 > If you have:
 **Fingerprint Reader**
@@ -121,7 +121,7 @@ Add _color_, _ILoveCandy_, _multilib_
 
 # Package that could be install later
 ```
-pacman -S power-profiles-daemon man less grub fwupd yazi reflector code sshfs qemu virt-manager dnsmasq vde2 bridge-utils iptables libvirt swtpm noto-fonts-cjk bluez-utils thunderbird
+pacman -S power-profiles-daemon man less fwupd yazi reflector code sshfs qemu virt-manager dnsmasq vde2 bridge-utils iptables libvirt swtpm noto-fonts-cjk bluez-utils thunderbird
 ```
 **Android packages**
 ```
