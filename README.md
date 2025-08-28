@@ -176,29 +176,18 @@ echo "yourhostname" >> /etc/hostname
 
 # Create username
 ```
-useradd -m _yourname_
+useradd -m yourusername
 ```
 ```
-passwd _yourname_
+passwd yourusername
 ```
 ```
-usermod -aG wheel _yourname_
-```
-edit **visudo**
-
-# Add paru
-```
-su _username_ 
+usermod -aG wheel yourusername
 ```
 ```
-git clone https://aur.archlinux.org/paru-bin.git
+vim visudo
 ```
-```
-cd paru-bin
-```
-```
-makepkg -si
-```
+> or nano, vi or whatever of your editor.
 
 # Create zram
 ```
