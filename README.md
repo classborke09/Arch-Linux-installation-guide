@@ -1,4 +1,4 @@
-## Arch-Linux-installation-guide
+## Arch Linux installation guide with Luks encrypt, Grub, Btrfs, Snapshots.
 
 For this guide i'll use _nvme_ as a hard drive and this partition pattern:
 
