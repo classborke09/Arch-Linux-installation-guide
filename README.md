@@ -171,7 +171,7 @@ echo "LANG=en_US.UTF-8" >> /etc/locale.conf
 ```
 **Change your hostname**
 ```
-echo "_yourhostname_" >> /etc/hostname
+echo "yourhostname" >> /etc/hostname
 ```
 
 # Create username
