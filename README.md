@@ -3,12 +3,14 @@
 For this guide i'll use _nvme_ as a hard drive and this partition pattern:
 
 ```
-NAME                    MAJ:MIN RM   SIZE RO TYPE  MOUNTPOINTS
-/dev/nvme0n1            259:0    0 476.9G  0 disk  
-├─/dev/nvme0n1p1        259:1    0     1G  0 part  /boot
-└─/dev/nvme0n1p2        259:2    0 475.9G  0 part  
-  └─/dev/mapper/luksdev 253:0    0 475.9G  0 crypt /
-                                                   /.....
+NAME        FSTYPE      FSVER LABEL UUID                                 FSAVAIL FSUSE% MOUNTPOINTS
+zram0       swap        1     zram0 43dc6639-b81b-45f5-b47f-d4688de674fb                [SWAP]
+nvme0n1
+├─nvme0n1p1 vfat        FAT32       4778-D4C0                               1.4G    29% /boot
+└─nvme0n1p2 crypto_LUKS 2           480af564-d84c-46b4-81c9-6e87207d7da9
+  └─luksdev btrfs                   0034b945-8863-496f-b1c6-10d57635f5be  385.4G    19% /home
+                                                                                        /.snapshots
+                                                                                        /
 ```
 
 # Connect to interenet
@@ -75,6 +77,9 @@ btrfs subvolume create @
 btrfs subvolume create @home
 ```
 ```
+btrfs subvolume create @snapshots
+```
+```
 cd
 ```
 ```
@@ -86,6 +91,9 @@ mount -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@ /dev/mapper
 ```
 mount --mkdir -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@home /dev/mapper/luksdev /mnt/home
 ```
+```
+mount --mkdir -o noatime,compress=zstd,space_cache=v2,discard=async,subvol=@snapshots /dev/mapper/luksdev /mnt/.snapshots
+```
 
 **Boot partition**
 ```
@@ -94,7 +102,7 @@ mount --mkdir /dev/nvme0n1p1 /mnt/boot
 
 # Pacstrap
 ```
-pacstrap -K /mnt linux linux-firmware base base-devel apparmor ufw vim networkmanager efibootmgr sbctl htop fuse2 git make btrfs-progs cronie exfat-utils efitools dosfstools smartmontools snapper grub grub-btrfs
+pacstrap -K /mnt linux-lts linux-firmware base base-devel apparmor ufw vim networkmanager efibootmgr btrfs-progs cronie exfat-utils efitools dosfstools smartmontools snapper grub grub-btrfs
 ```
 > If you have:
 **Fingerprint Reader**
@@ -103,7 +111,7 @@ fprint
 ```
 **Nvidia GPU (depend on your linux kernel version)**
 ```
-nvidia 
+nvidia-lts
 ```
 
 # After pacstrap
@@ -121,7 +129,7 @@ Add _color_, _ILoveCandy_, _multilib_
 
 # Package that could be install later
 ```
-pacman -S power-profiles-daemon man less fwupd yazi reflector code sshfs qemu virt-manager dnsmasq vde2 bridge-utils iptables libvirt swtpm noto-fonts-cjk bluez-utils thunderbird
+pacman -S sbctl htop fuse2 git make power-profiles-daemon man less fwupd yazi reflector code sshfs qemu virt-manager dnsmasq vde2 bridge-utils iptables libvirt swtpm noto-fonts-cjk bluez-utils thunderbird
 ```
 **Android packages**
 ```
@@ -129,7 +137,7 @@ pacman -S android-tools android-udev scrcpy
 ```
 **Gnome packages**
 ```
-pacman -S gnome gnome-firmware papers showtime resources ptyxis
+pacman -S gnome gnome-firmware papers showtime resources ghostty
 ```
 **Kde packages**
 ```
@@ -142,7 +150,7 @@ pacman -S Commit Mono or Geist Mono
 
 # Service to startup
 ```
-systemctl enable NetworkManager systemd-boot-update systemd-resolved apparmor ufw cronie bluetooth
+systemctl enable NetworkManager systemd-boot-update systemd-resolved apparmor ufw cronie bluetooth libvirtd
 ```
 
 # Setup system time
@@ -193,51 +201,29 @@ makepkg -si
 ```
 
 # Create zram
-_Edit_ **/etc/systemd/zram-generator.conf**
-
 ```
-[zram0]
-zram-size = min(ram / 2, 4096)
-compression-algorithm = zstd
+echo "zram" >> /etc/modules-load.d/zram.conf
+```
+```
+echo 'ACTION=="add", KERNEL=="zram0", ATTR{initstate}=="0", ATTR{comp_algorithm}="zstd", ATTR{disksize}="8G", TAG+="systemd"' >> /etc/udev/rules.d/99-zram.rules
+```
+> Change the _disksize_ if nessesary.
+```
+echo "/dev/zram0 none swap defaults,discard,pri=100,x-systemd.makefs 0 0" >> /etc/fstab
 ```
 
 # Setup bootloader with luks
-Choose your bootloader, this guide I'll use systemd-boot and uki
 ```
-bootctl install
+grub-install --target=x86_64-efi --efi-directory=esp --bootloader-id=GRUB --modules="tpm cryptodisk" --disable-shim-lock
 ```
-**.preset file**
-
-**_Edit_ /etc/mkinitcpio.d/linux.preset**
+**Edit /etc/default/grub**
 ```
-# mkinitcpio preset file for the 'linux' package
-
-#ALL_config="/etc/mkinitcpio.conf"
-ALL_kver="/boot/vmlinuz-linux"
-
-PRESETS=('default' 'fallback')
-
-#default_config="/etc/mkinitcpio.conf"
-#default_image="/boot/initramfs-linux.img"
-default_uki="esp/EFI/Linux/arch-linux.efi"
-default_options="--splash=/usr/share/systemd/bootctl/splash-arch.bmp"
-
-#fallback_config="/etc/mkinitcpio.conf"
-#fallback_image="/boot/initramfs-linux-fallback.img"
-fallback_uki="esp/EFI/Linux/arch-linux-fallback.efi"
-fallback_options="-S autodetect"
+GRUB_CMDLINE_LINUX_DEFAULT="rd.luks.name=480af564-d84c-46b4-81c9-6e87207d7da9=luksdev root=UUID=0034b945-8863-496f-b1c6-10d57635f5be rw rootfstype=btrfs rootflags=subvol=@ lsm=landlock,lockdown,yama,integrity,apparmor,bpf"
 ```
+> Please change your uuid(xxxx-xxxx-xxxx-xxxx).
 ```
-blkid -o value -s UUID /dev/_encrypt_parition_ (eg, /dev/nvme0n1p2) >> /etc/cmdline.d/root.conf
+grub-mkconfig -o /boot/grub/grub.cfg
 ```
-```
-blkid -o value -s UUID /dev/_dencrypt_parition_ (eg, /dev/mapper/luksdev) >> /etc/cmdline.d/root.conf
-```
-**_Edit_ your /etc/cmdline.d/root.conf**
-```
-rd.luks.name=_device-UUID_=luksdev root=UUID=luksdev_ rw rootfstype=btrfs rootflags=subvol=@
-```
-> Note: _device-UUID_ is a encrypt partition and _luksdev_ is a decrypt one
 
 **_Edit_ mkinitcpio.conf**
 Modify **HOOKS**
@@ -259,7 +245,27 @@ exit
 ```
 umount -R /mnt
 ```
-**And**
 ```
 reboot
+```
+
+# Log in your system
+```
+sudo umount /.snapshots/
+```
+```
+sudo rm -rf /.snapshots/
+```
+```
+sudo snapper -c root create-config /
+```
+Edit /etc/snapper/config/root
+```
+sudo systemctl enable snapper-timeline.timer
+```
+```
+sudo systemctl enable snapper-cleanup.timer
+```
+```
+sudo systemctl enable grub-btrfsd
 ```
