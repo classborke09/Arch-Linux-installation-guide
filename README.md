@@ -248,7 +248,7 @@ sudo rm -rf /.snapshots/
 ```
 sudo snapper -c root create-config /
 ```
-Edit /etc/snapper/config/root
+Edit /etc/snapper/configs/root
 ```
 sudo systemctl enable snapper-timeline.timer
 ```
