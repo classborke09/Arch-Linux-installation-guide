@@ -185,7 +185,7 @@ passwd yourusername
 usermod -aG wheel yourusername
 ```
 ```
-vim visudo
+visudo
 ```
 > or nano, vi or whatever of your editor.
 
