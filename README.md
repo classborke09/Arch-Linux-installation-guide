@@ -137,7 +137,7 @@ pacman -S android-tools android-udev scrcpy
 ```
 **Gnome packages**
 ```
-pacman -S gnome gnome-firmware papers showtime resources ghostty
+pacman -S gnome gnome-firmware papers showtime resources ghostty && pacman -Rns evince gnome-connections gnome-maps gnome-music gnome-user-docs totem yelp
 ```
 **Kde packages**
 ```
