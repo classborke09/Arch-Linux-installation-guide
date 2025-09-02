@@ -150,7 +150,7 @@ pacman -S Commit Mono or Geist Mono
 
 # Service to startup
 ```
-systemctl enable NetworkManager systemd-boot-update systemd-resolved apparmor ufw cronie bluetooth libvirtd
+systemctl enable NetworkManager systemd-resolved apparmor ufw cronie bluetooth libvirtd
 ```
 
 # Setup system time
