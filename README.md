@@ -102,7 +102,7 @@ mount --mkdir /dev/nvme0n1p1 /mnt/boot
 
 # Pacstrap
 ```
-pacstrap -K /mnt linux-lts linux-firmware base base-devel apparmor ufw vim networkmanager efibootmgr btrfs-progs cronie exfat-utils efitools dosfstools smartmontools snapper grub grub-btrfs inotify-tools
+pacstrap -K /mnt linux-lts linux-firmware base base-devel apparmor ufw vim networkmanager efibootmgr btrfs-progs cronie tree exfat-utils efitools dosfstools smartmontools snapper grub grub-btrfs inotify-tools
 ```
 > If you have:
 **Fingerprint Reader**
