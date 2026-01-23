@@ -104,6 +104,14 @@ mount --mkdir /dev/nvme0n1p1 /mnt/boot
 ```
 pacstrap -K /mnt linux-lts linux-firmware base base-devel apparmor ufw vim networkmanager efibootmgr btrfs-progs cronie tree exfat-utils efitools dosfstools smartmontools snapper grub grub-btrfs inotify-tools
 ```
+> For Intel CPU install:
+```
+intel-ucode
+```
+> For AMD CPU install:
+```
+amd-ucode
+```
 > If you have:
 **Fingerprint Reader**
 ```
