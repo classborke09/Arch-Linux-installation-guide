@@ -149,7 +149,7 @@ pacman -S gnome gnome-firmware papers showtime mission-center ghostty && pacman 
 ```
 **Kde packages**
 ```
-pacman -S plasma kate ark kalk okular gwenview dragon merkuro konsole kclock partitionmanager kdeconnect
+pacman -S plasma kate ark kalk okular gwenview dragon merkuro konsole kclock partitionmanager kdeconnect dolphin
 ```
 **Miscs that you might don't need!**
 ```
