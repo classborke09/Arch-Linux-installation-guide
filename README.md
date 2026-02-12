@@ -102,7 +102,7 @@ mount --mkdir /dev/nvme0n1p1 /mnt/boot
 
 # Pacstrap
 ```
-pacstrap -K /mnt linux-lts linux-firmware base base-devel apparmor ufw vim networkmanager efibootmgr btrfs-progs cronie tree exfat-utils efitools dosfstools smartmontools snapper grub grub-btrfs inotify-tools
+pacstrap -K /mnt linux linux-firmware base base-devel apparmor ufw vim networkmanager efibootmgr btrfs-progs cronie tree exfat-utils efitools dosfstools smartmontools snapper grub grub-btrfs inotify-tools
 ```
 > For Intel CPU install:
 ```
@@ -119,7 +119,7 @@ fprint
 ```
 **Nvidia GPU (depend on your linux kernel version)**
 ```
-nvidia-lts
+nvidia-open
 ```
 
 # After pacstrap
@@ -137,7 +137,7 @@ Add _color_, _ILoveCandy_, _multilib_
 
 # Package that could be install later
 ```
-pacman -S sbctl htop fuse2 git make power-profiles-daemon man less fwupd yazi reflector code sshfs qemu virt-manager dnsmasq vde2 iptables libvirt swtpm noto-fonts-cjk bluez-utils thunderbird
+pacman -S sbctl htop fuse2 git make power-profiles-daemon man less fwupd reflector sshfs qemu virt-manager dnsmasq vde2 iptables libvirt swtpm noto-fonts-cjk bluez-utils rsync syncthing libreoffice-fresh
 ```
 **Android packages**
 ```
@@ -145,20 +145,16 @@ pacman -S android-tools android-udev scrcpy
 ```
 **Gnome packages**
 ```
-pacman -S gnome gnome-firmware papers showtime mission-center ghostty && pacman -Rns evince gnome-connections gnome-maps gnome-music gnome-user-docs totem sushi yelp
+pacman -S gnome gnome-firmware papers showtime mission-center ptyxis && pacman -Rns evince gnome-connections gnome-maps gnome-music gnome-user-docs totem sushi yelp
 ```
 **Kde packages**
 ```
 pacman -S plasma kate ark kalk okular gwenview dragon merkuro konsole kclock partitionmanager kdeconnect dolphin
 ```
-**Miscs that you might don't need!**
-```
-pacman -S Commit Mono or Geist Mono
-```
 
 # Service to startup
 ```
-systemctl enable NetworkManager systemd-resolved apparmor ufw cronie bluetooth libvirtd
+systemctl enable NetworkManager systemd-resolved apparmor ufw cronie bluetooth libvirtd power-profiles-daemon
 ```
 
 # Setup system time
@@ -201,12 +197,11 @@ visudo
 ```
 echo "zram" >> /etc/modules-load.d/zram.conf
 ```
-Append ``'ACTION=="add", KERNEL=="zram0", ATTR{initstate}=="0", ATTR{comp_algorithm}="zstd", ATTR{disksize}="8G", TAG+="systemd"'`` to /etc/udev/rules.d/99-zram.rules
-
+```
+ACTION=="add", KERNEL=="zram0", ATTR{initstate}=="0", ATTR{comp_algorithm}="zstd", ATTR{disksize}="8G", TAG+="systemd" > /etc/udev/rules.d/99-zram.rules
+```
 > Change the _disksize_ if nessesary.
-```
-echo "/dev/zram0 none swap defaults,discard,pri=100,x-systemd.makefs 0 0" >> /etc/fstab
-```
+Append ``echo "/dev/zram0 none swap defaults,discard,pri=100,x-systemd.makefs 0 0"`` to /etc/fstab
 
 # Setup bootloader with luks
 ```
@@ -214,7 +209,7 @@ grub-install --target=x86_64-efi --efi-directory=esp --bootloader-id=GRUB --modu
 ```
 **Edit /etc/default/grub**
 ```
-GRUB_CMDLINE_LINUX_DEFAULT="rd.luks.name=480af564-d84c-46b4-81c9-6e87207d7da9=luksdev root=UUID=0034b945-8863-496f-b1c6-10d57635f5be rw rootfstype=btrfs rootflags=subvol=@ lsm=landlock,lockdown,yama,integrity,apparmor,bpf"
+GRUB_CMDLINE_LINUX_DEFAULT="rd.luks.name=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxx=luksdev root=UUID=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxx rw rootfstype=btrfs rootflags=subvol=@ lsm=landlock,lockdown,yama,integrity,apparmor,bpf"
 ```
 > Please change your uuid(xxxx-xxxx-xxxx-xxxx).
 ```
@@ -255,16 +250,10 @@ sudo rm -rf /.snapshots/
 ```
 sudo snapper -c root create-config /
 ```
-Edit /etc/snapper/configs/root
+* Edit /etc/snapper/configs/root
 ```
 sudo chmod a+rx /.snapshots/
 ```
 ```
-sudo systemctl enable snapper-timeline.timer
-```
-```
-sudo systemctl enable snapper-cleanup.timer
-```
-```
-sudo systemctl enable grub-btrfsd
+sudo systemctl enable snapper-timeline.timer snapper-cleanup.timer grub-btrfsd
 ```
