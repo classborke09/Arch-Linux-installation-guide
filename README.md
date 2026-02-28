@@ -137,7 +137,7 @@ Add _color_, _ILoveCandy_, _multilib_
 
 # Package that could be install later
 ```
-pacman -S sbctl htop fuse2 git make power-profiles-daemon man less fwupd reflector sshfs qemu virt-manager dnsmasq vde2 iptables libvirt swtpm noto-fonts-cjk ttf-jetbrains-mono-nerd bluez-utils rsync syncthing libreoffice-fresh
+pacman -S sbctl htop fuse2 git make power-profiles-daemon man less fwupd reflector sshfs qemu virt-manager dnsmasq vde2 iptables libvirt swtpm noto-fonts-cjk ttf-jetbrains-mono-nerd bluez-utils rsync syncthing keepassxc libreoffice-fresh
 ```
 **Android packages**
 ```
@@ -145,7 +145,7 @@ pacman -S android-tools android-udev scrcpy
 ```
 **Gnome packages**
 ```
-pacman -S gnome gnome-firmware papers showtime mission-center ptyxis && pacman -Rns evince gnome-connections gnome-maps gnome-music gnome-user-docs totem sushi yelp
+pacman -S gnome gnome-firmware papers showtime resources ptyxis impression secrets && pacman -Rns evince gnome-connections gnome-maps gnome-music gnome-user-docs totem sushi yelp
 ```
 **Kde packages**
 ```
