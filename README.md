@@ -102,7 +102,7 @@ mount --mkdir /dev/nvme0n1p1 /mnt/boot
 
 # Pacstrap
 ```
-pacstrap -K /mnt linux linux-firmware base base-devel apparmor ufw vim networkmanager efibootmgr btrfs-progs cronie tree exfat-utils efitools dosfstools smartmontools snapper grub grub-btrfs inotify-tools
+pacstrap -K /mnt linux linux-firmware base base-devel apparmor vim networkmanager efibootmgr btrfs-progs cronie tree exfat-utils efitools dosfstools smartmontools snapper grub grub-btrfs inotify-tools
 ```
 > For Intel CPU install:
 ```
@@ -154,7 +154,7 @@ pacman -S plasma kate ark kalk okular gwenview dragon merkuro konsole kclock par
 
 # Service to startup
 ```
-systemctl enable NetworkManager systemd-resolved apparmor ufw cronie bluetooth libvirtd power-profiles-daemon
+systemctl enable NetworkManager firewalld systemd-resolved apparmor cronie bluetooth libvirtd power-profiles-daemon
 ```
 
 # Setup system time
