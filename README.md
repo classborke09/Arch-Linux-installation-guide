@@ -154,7 +154,7 @@ pacman -S plasma kate ark kalk okular gwenview dragon merkuro konsole kclock par
 
 # Service to startup
 ```
-systemctl enable NetworkManager firewalld systemd-resolved apparmor cronie bluetooth libvirtd power-profiles-daemon
+systemctl enable NetworkManager firewalld systemd-resolved apparmor cronie bluetooth virtqemud virtnetworkd virtstoraged virtnwfilterd power-profiles-daemon
 ```
 
 # Setup system time
