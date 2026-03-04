@@ -157,6 +157,11 @@ pacman -S plasma kate ark kalk okular gwenview dragon merkuro konsole kclock par
 systemctl enable NetworkManager firewalld systemd-resolved apparmor cronie bluetooth virtqemud virtnetworkd virtstoraged virtnwfilterd power-profiles-daemon
 ```
 
+# Nvidia Preserve Memory Allocation
+```
+echo -e "options		nvidia		NVreg_PreserveVideoMemoryAllocations=1\noptions		nvidia		NVreg_EnableS0ixPowerManagement=1\noptions		nvidia		NVreg_S0ixPowerManagementVideoMemoryThreshold=$(nvidia-smi --query-gpu=memory.total --format=csv,noheader,nounits -i 0)" >> /etc/modprobe.d/nvidia.conf
+```
+
 # Setup system time
 ```
 ln -sf /usr/share/zoneinfo/Region/locatime /etc/localtime
