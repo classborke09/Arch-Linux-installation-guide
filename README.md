@@ -102,7 +102,7 @@ mount --mkdir /dev/nvme0n1p1 /mnt/boot
 
 # Pacstrap
 ```
-pacstrap -K /mnt linux linux-firmware base base-devel apparmor vim networkmanager efibootmgr btrfs-progs cronie tree exfat-utils efitools dosfstools smartmontools snapper grub grub-btrfs inotify-tools
+pacstrap -K /mnt linux linux-firmware base base-devel apparmor vim networkmanager iptables-nft efibootmgr btrfs-progs cronie tree exfat-utils efitools dosfstools smartmontools snapper grub grub-btrfs inotify-tools
 ```
 > For Intel CPU install:
 ```
@@ -137,7 +137,7 @@ Add _color_, _ILoveCandy_, _multilib_
 
 # Package that could be install later
 ```
-pacman -S sbctl htop fuse2 git make power-profiles-daemon man wireguard-tools pipewire-alsa realtime-privileges less fwupd reflector sshfs qemu virt-manager dnsmasq vde2 iptables libvirt swtpm noto-fonts-cjk ttf-jetbrains-mono-nerd bluez-utils rsync syncthing keepassxc libreoffice-fresh cups
+pacman -S sbctl htop fuse2 git make power-profiles-daemon man wireguard-tools pipewire-alsa realtime-privileges less fwupd reflector sshfs qemu virt-manager dnsmasq vde2 libvirt swtpm noto-fonts-cjk ttf-jetbrains-mono-nerd bluez-utils rsync syncthing keepassxc libreoffice-fresh cups
 ```
 **Android packages**
 ```
