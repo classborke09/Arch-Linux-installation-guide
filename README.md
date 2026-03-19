@@ -206,7 +206,7 @@ echo "zram" >> /etc/modules-load.d/zram.conf
 echo 'ACTION=="add", KERNEL=="zram0", ATTR{initstate}=="0", ATTR{comp_algorithm}="zstd", ATTR{disksize}="8G", TAG+="systemd"' > /etc/udev/rules.d/99-zram.rules
 ```
 > Change the _disksize_ if nessesary.
-Append ``echo "/dev/zram0 none swap defaults,discard,pri=100,x-systemd.makefs 0 0"`` to /etc/fstab
+Append ``/dev/zram0 none swap defaults,discard,pri=100,x-systemd.makefs 0 0`` to /etc/fstab
 
 # Setup bootloader with luks
 ```
