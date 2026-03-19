@@ -159,9 +159,9 @@ systemctl enable NetworkManager firewalld systemd-resolved cups apparmor cronie 
 
 # Nvidia Preserve Memory Allocation
 ```
-echo -e "options		nvidia		NVreg_PreserveVideoMemoryAllocations=1\noptions		nvidia		NVreg_EnableS0ixPowerManagement=1\noptions		nvidia		NVreg_S0ixPowerManagementVideoMemoryThreshold=$(nvidia-smi --query-gpu=memory.total --format=csv,noheader,nounits -i 0)" >> /etc/modprobe.d/nvidia.conf
+echo -e "options nvidia	NVreg_PreserveVideoMemoryAllocations=1\noptions	nvidia NVreg_EnableS0ixPowerManagement=1\noptions	nvidia NVreg_S0ixPowerManagementVideoMemoryThreshold=amount_of_vram_on_your_gpu" >> /etc/modprobe.d/nvidia.conf
 ```
-
+> replace _amount_of_vram_on_your_gpu_ to actual number.
 # Setup system time
 ```
 ln -sf /usr/share/zoneinfo/Region/locatime /etc/localtime
