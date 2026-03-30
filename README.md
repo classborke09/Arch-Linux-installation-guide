@@ -216,7 +216,7 @@ grub-install --target=x86_64-efi --efi-directory=esp --bootloader-id=GRUB --modu
 ```
 **Edit /etc/default/grub**
 ```
-GRUB_CMDLINE_LINUX_DEFAULT="rd.luks.name=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxx=luksdev root=UUID=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxx rw rootfstype=btrfs rootflags=subvol=@ lsm=landlock,lockdown,yama,integrity,apparmor,bpf"
+GRUB_CMDLINE_LINUX_DEFAULT="rd.luks.name=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxx=luksdev root=UUID=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxx rw rootfstype=btrfs rootflags=subvol=@ lsm=landlock,lockdown,yama,integrity,apparmor,bpf audit=1"
 ```
 > Please change your uuid(xxxx-xxxx-xxxx-xxxx).
 ```
