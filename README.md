@@ -154,7 +154,7 @@ pacman -S plasma kate ark kalk okular gwenview dragon merkuro konsole kclock par
 
 # Service to startup
 ```
-systemctl enable NetworkManager firewalld systemd-resolved cups apparmor cronie bluetooth virtqemud virtnetworkd virtstoraged virtnwfilterd power-profiles-daemon
+systemctl enable NetworkManager firewalld systemd-resolved cups apparmor auditd cronie bluetooth virtqemud virtnetworkd virtstoraged virtnwfilterd power-profiles-daemon
 ```
 
 # Nvidia Preserve Memory Allocation
