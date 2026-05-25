@@ -102,7 +102,7 @@ mount --mkdir /dev/nvme0n1p1 /mnt/boot
 
 # Pacstrap
 ```
-pacstrap -K /mnt linux linux-firmware base base-devel apparmor vim networkmanager iptables-nft efibootmgr btrfs-progs cronie tree exfat-utils efitools dosfstools smartmontools snapper grub grub-btrfs inotify-tools
+pacstrap -K /mnt linux linux-firmware base base-devel apparmor neovim networkmanager iptables-nft efibootmgr btrfs-progs cronie tree exfat-utils efitools dosfstools smartmontools snapper grub grub-btrfs inotify-tools
 ```
 > For Intel CPU install:
 ```
