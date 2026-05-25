@@ -145,7 +145,7 @@ pacman -S android-tools android-udev scrcpy
 ```
 **Gnome packages**
 ```
-pacman -S gnome gnome-firmware papers showtime resources ghostty ghostty-nautilus impression secrets && pacman -Rns evince gnome-connections gnome-maps gnome-music gnome-user-docs totem sushi yelp
+pacman -S gnome gnome-firmware papers showtime resources ghostty ghostty-nautilus impression secrets && pacman -Rns evince gnome-connections gnome-maps gnome-music gnome-user-docs sushi yelp
 ```
 **Kde packages**
 ```
