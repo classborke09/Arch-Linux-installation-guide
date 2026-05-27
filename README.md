@@ -137,7 +137,7 @@ Add _color_, _ILoveCandy_, _multilib_
 
 # Package that could be install later
 ```
-pacman -S sbctl htop fuse2 git make power-profiles-daemon man wireguard-tools pipewire-alsa realtime-privileges less fwupd reflector sshfs qemu virt-manager dnsmasq vde2 libvirt swtpm noto-fonts-cjk ttf-jetbrains-mono-nerd bluez-utils rsync syncthing keepassxc libreoffice-fresh cups steam mangohud
+pacman -S sbctl btop fuse2 git make power-profiles-daemon man wireguard-tools pipewire-alsa realtime-privileges less fwupd reflector sshfs qemu virt-manager dnsmasq vde2 libvirt swtpm noto-fonts-cjk ttf-jetbrains-mono-nerd bluez-utils rsync syncthing keepassxc libreoffice-fresh cups steam mangohud
 ```
 **Android packages**
 ```
@@ -248,6 +248,12 @@ reboot
 ```
 
 # Log in your system
+**Hide unnecessary packages**
+```
+cp /usr/share/applications/{avahi-discover,bssh,bvnc,cups,qv4l2,qvidcap,scrcpy,scrcpy-console,btop,nvim,org.gnome.Extensions}.desktop ~/.local/share/applications && echo "NoDisplay=true" | tee -a ~/.local/share/applications*.desktop && chmod 444 ~/.local/share/applications*.desktop
+```
+
+**Create Snapshots**
 ```
 sudo umount /.snapshots/
 ```
