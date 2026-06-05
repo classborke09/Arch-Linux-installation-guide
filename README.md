@@ -137,7 +137,7 @@ Add _color_, _ILoveCandy_, _multilib_
 
 # Package that could be install later
 ```
-pacman -S sbctl btop fuse2 git net-tools make power-profiles-daemon man wireguard-tools pipewire-alsa less fwupd reflector sshfs qemu virt-manager dnsmasq vde2 libvirt swtpm noto-fonts-cjk ttf-jetbrains-mono-nerd otf-geist-mono-nerd ttf-ibm-plex bluez-utils rsync syncthing keepassxc libreoffice-fresh cups steam mangohud nextcloud-client inetutils
+pacman -S sbctl btop fuse2 git net-tools make power-profiles-daemon man wireguard-tools pipewire-alsa less fwupd reflector sshfs qemu virt-manager dnsmasq vde2 dmidecode libvirt swtpm noto-fonts-cjk ttf-jetbrains-mono-nerd otf-geist-mono-nerd ttf-ibm-plex bluez-utils rsync syncthing keepassxc libreoffice-fresh cups steam mangohud nextcloud-client inetutils
 ```
 **Android packages**
 ```
