@@ -149,7 +149,7 @@ pacman -S gnome gnome-firmware papers showtime resources ghostty ghostty-nautilu
 ```
 **Kde packages**
 ```
-pacman -S plasma kate ark kalk okular gwenview dragon merkuro konsole kclock partitionmanager kdeconnect dolphin
+pacman -S plasma kate ark kalk okular gwenview dragon merkuro konsole kclock partitionmanager kdeconnect dolphin system-config-printer
 ```
 
 # Service to startup
