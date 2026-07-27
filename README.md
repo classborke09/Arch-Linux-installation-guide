@@ -102,7 +102,7 @@ mount --mkdir /dev/nvme0n1p1 /mnt/boot
 
 # Pacstrap
 ```
-pacstrap -K /mnt linux linux-firmware base base-devel apparmor neovim networkmanager iptables-nft efibootmgr btrfs-progs cronie tree exfat-utils efitools dosfstools smartmontools snapper grub grub-btrfs inotify-tools
+pacstrap -K /mnt linux linux-firmware base base-devel apparmor vim networkmanager iptables-nft efibootmgr btrfs-progs cronie tree exfat-utils efitools dosfstools smartmontools snapper grub grub-btrfs inotify-tools
 ```
 > For Intel CPU install:
 ```
@@ -137,7 +137,7 @@ Add _color_, _ILoveCandy_, _multilib_
 
 # Package that could be install later
 ```
-pacman -S sbctl btop fuse2 git net-tools make power-profiles-daemon man wireguard-tools pipewire-alsa less fwupd reflector sshfs qemu virt-manager dnsmasq vde2 dmidecode libvirt swtpm noto-fonts-cjk ttf-jetbrains-mono-nerd otf-geist-mono-nerd ttf-ibm-plex bluez-utils rsync syncthing keepassxc libreoffice-fresh cups steam mangohud nextcloud-client inetutils
+pacman -S sbctl btop fuse2 unrar git net-tools make power-profiles-daemon man wireguard-tools pipewire-alsa less fwupd reflector sshfs qemu virt-manager dnsmasq vde2 dmidecode libvirt swtpm noto-fonts-cjk ttf-jetbrains-mono-nerd ttf-ibm-plex bluez-utils rsync libreoffice-fresh cups steam mangohud seafile-client inetutils
 ```
 **Android packages**
 ```
@@ -154,13 +154,9 @@ pacman -S plasma kate ark kalk okular gwenview dragon merkuro konsole kclock par
 
 # Service to startup
 ```
-systemctl enable NetworkManager firewalld systemd-resolved cups apparmor auditd cronie bluetooth virtqemud virtnetworkd virtstoraged virtnwfilterd power-profiles-daemon
+systemctl enable NetworkManager firewalld systemd-resolved cups apparmor auditd cronie bluetooth virtqemud virtnetworkd virtnwfilterd power-profiles-daemon
 ```
 
-# Nvidia Preserve Memory Allocation
-```
-echo -e "options nvidia	NVreg_PreserveVideoMemoryAllocations=1\noptions	nvidia NVreg_EnableS0ixPowerManagement=1\noptions	nvidia NVreg_S0ixPowerManagementVideoMemoryThreshold=amount_of_vram_on_your_gpu" >> /etc/modprobe.d/nvidia.conf
-```
 > replace _amount_of_vram_on_your_gpu_ to actual number.
 # Setup system time
 ```
@@ -212,7 +208,10 @@ echo -e "# /dev/zram0\n/dev/zram0 none swap defaults,discard,pri=100,x-systemd.m
 
 # Setup bootloader with luks
 ```
-grub-install --target=x86_64-efi --efi-directory=esp --bootloader-id=GRUB --modules="tpm cryptodisk" --disable-shim-lock
+GRUB_MODULES="all_video boot btrfs cat chain configfile echo efifwsetup efinet ext2 fat font gettext gfxmenu gfxterm gfxterm_background gzio halt help hfsplus iso9660 jpeg keystatus loadenv loopback linux ls lsefi lsefimmap lsefisystab lssal memdisk minicmd normal ntfs part_apple part_msdos part_gpt password_pbkdf2 png probe reboot regexp search search_fs_uuid search_fs_file search_label sleep smbios squash4 test true video xfs zfs zfscrypt zfsinfo tpm luks cryptodisk"
+```
+```
+grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB --modules="${GRUB_MODULES}" --disable-shim-lock
 ```
 **Edit /etc/default/grub**
 ```
@@ -250,7 +249,7 @@ reboot
 # Log in your system
 **Hide unnecessary packages**
 ```
-cp /usr/share/applications/{avahi-discover,bssh,bvnc,cups,qv4l2,qvidcap,scrcpy,scrcpy-console,btop,nvim,org.gnome.Extensions}.desktop ~/.local/share/applications && echo "NoDisplay=true" | tee -a ~/.local/share/applications*.desktop && chmod 444 ~/.local/share/applications*.desktop
+cp /usr/share/applications/{avahi-discover,bssh,bvnc,qv4l2,qvidcap,scrcpy,scrcpy-console,btop,vim}.desktop ~/.local/share/applications && echo "NoDisplay=true" | tee -a ~/.local/share/applications/{avahi-discover,bssh,bvnc,qv4l2,qvidcap,scrcpy,scrcpy-console,btop,vim}.desktop && chmod 444 ~/.local/share/applications/{avahi-discover,bssh,bvnc,qv4l2,qvidcap,scrcpy,scrcpy-console,btop,vim}.desktop
 ```
 
 **Create Snapshots**
