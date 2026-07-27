@@ -154,7 +154,7 @@ pacman -S plasma kate ark kalk okular gwenview dragon merkuro konsole kclock par
 
 # Service to startup
 ```
-systemctl enable NetworkManager firewalld systemd-resolved cups apparmor auditd cronie bluetooth virtqemud virtnetworkd virtnwfilterd power-profiles-daemon
+systemctl enable NetworkManager firewalld systemd-resolved cups apparmor auditd cronie bluetooth virtqemud virtnetworkd virtnwfilterd virtstoraged power-profiles-daemon
 ```
 
 > replace _amount_of_vram_on_your_gpu_ to actual number.
