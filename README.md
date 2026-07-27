@@ -137,7 +137,7 @@ Add _color_, _ILoveCandy_, _multilib_
 
 # Package that could be install later
 ```
-pacman -S sbctl btop fuse2 unrar git net-tools make power-profiles-daemon man wireguard-tools pipewire-alsa less fwupd reflector sshfs qemu virt-manager dnsmasq vde2 dmidecode libvirt swtpm noto-fonts-cjk ttf-jetbrains-mono-nerd ttf-ibm-plex bluez-utils rsync libreoffice-fresh cups steam mangohud seafile-client inetutils
+pacman -S sbctl btop fuse2 unrar git net-tools make power-profiles-daemon man wireguard-tools pipewire-alsa less fwupd reflector sshfs qemu virt-manager dnsmasq vde2 dmidecode libvirt swtpm noto-fonts-cjk ttf-jetbrains-mono-nerd ttf-ibm-plex bluez-utils rsync libreoffice-fresh cups system-config-printer steam mangohud seafile-client inetutils 
 ```
 **Android packages**
 ```
@@ -149,7 +149,7 @@ pacman -S gnome gnome-firmware papers showtime resources ghostty ghostty-nautilu
 ```
 **Kde packages**
 ```
-pacman -S plasma kate ark kalk okular gwenview dragon merkuro konsole kclock partitionmanager kdeconnect dolphin system-config-printer
+pacman -S plasma kate ark kalk okular gwenview dragon merkuro konsole kclock partitionmanager kdeconnect dolphin
 ```
 
 # Service to startup
